@@ -1,0 +1,10 @@
+.content {
+  margin-left: 250px;
+  position: relative;
+  top:100px;
+  padding-left: 0px;
+}
+
+#check:checked ~ .content {
+  margin-left: 60px;
+}
