@@ -1,9 +1,9 @@
 import * as actionType from '../action/actionTypes';
 
 const initialState = {
-  token: null,
-  userId: null,
-  error: null,
+  token  : null,
+  userId : null,
+  error  : null,
   loading: false
 };
 
@@ -13,30 +13,30 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        error: null
+        error  : null
       };
 
     case actionType.AUTH_SUCCESS:
       return {
         ...state,
         loading: false,
-        error: null,
-        token: action.token,
-        userId: action.userId
+        error  : null,
+        token  : action.token,
+        userId : action.userId
       };
 
     case actionType.AUTH_FAIL:
       return {
         ...state,
-        token: null,
+        token  : null,
         loading: false,
-        error: action.error
+        error  : action.error
       };
 
     case actionType.AUTH_LOGOUT:
       return {
         ...state,
-        token: null,
+        token : null,
         userId: null
       };
 

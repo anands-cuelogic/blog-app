@@ -8,6 +8,7 @@ import Spinner from '../../UI/Spinner/Spinner';
 import FormError from '../../UI/FormError/FormError';
 
 const Login = props => {
+
   const initialValues = {
     email: '',
     password: ''
@@ -74,9 +75,7 @@ const Login = props => {
 
 const mapStateToProps = state => ({
   loading: state.auth.loading,
-  error: state.auth.error,
-  isAuthenticated: state.auth.token !== null,
-  userId: state.auth.userId
+  error: state.auth.error
 });
 
 const mapDispatchToProps = dispatch => {

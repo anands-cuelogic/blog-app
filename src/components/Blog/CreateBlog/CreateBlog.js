@@ -3,17 +3,18 @@ import { Modal, Button } from 'react-bootstrap';
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 
 import TextError from '../../UI/FormError/FormError';
+import './CreateBlog.css';
 
 function CreateBlog(props) {
-
+  
   const initialValues = {
     title: '',
     content: ''
   };
 
   const onSubmit = values => {
-    console.log('VALUE ', values);
-    // props.onAuth(values.title, values.password)
+    props.createpost(values.title, values.content);
+    props.onHide();
   }
 
   const validate = values => {
@@ -25,6 +26,9 @@ function CreateBlog(props) {
 
     if (!values.content) {
       errors.content = 'Required';
+    }
+    if(values.content && values.content.length < 20) {
+      errors.content = 'Content must be minimum 20 words'
     }
 
     return errors;
@@ -56,13 +60,13 @@ function CreateBlog(props) {
           <Field as="textarea" name="content" rows="3" className="form-control" placeholder="Content" />
           <ErrorMessage name="content" component={TextError} />
         </div>
+        <div className="form-btn">
+        <Button  variant="danger"  onClick={props.onHide}>Close</Button>
+        <Button type="submit" className="create-blog-btn">Save changes</Button>
+        </div>
       </Form>
     </Formik>
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant="danger"  onClick={props.onHide}>Close</Button>
-        <Button style={{background: "#19B3D3", borderColor: "#19B3D3"}} onClick={onSubmit}>Save changes</Button>
-      </Modal.Footer>
     </Modal>
   );
 }
