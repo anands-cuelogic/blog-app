@@ -1,0 +1,43 @@
+ul.socialIcons {
+  padding: 0;
+  position: relative;
+  left: 23px;
+  height: 20px;
+}
+
+.socialIcons li {
+  background-color: yellow;
+  list-style: none;
+  display: inline-block;
+  margin: 4px;
+  border-radius: 2em;
+  overflow: hidden;
+  height: 40px;
+
+  padding: 0.5em;
+  min-width: 2.28571429em;
+  white-space: nowrap;
+  line-height: 1.5em; /*it's working only when you write text with icon*/
+  transition: 0.5s;
+  text-decoration: none;
+  font-family: arial;
+  color: #fff;
+  max-width: 200px;
+  padding-right: 1em;
+  cursor: pointer;
+}
+
+.socialIcons li svg {
+  margin-left: 7px;
+  margin-top: 0px;
+}
+
+.socialIcons li i {
+  margin-right: 0.5em;
+}
+
+
+.socialIcons .CreatePost {
+  background-color: #1DC4E7;
+  box-shadow: 0 0 16px #33BDFF;
+}

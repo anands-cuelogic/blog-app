@@ -21,22 +21,22 @@ header {
 }
 
 .logout_btn {
-  padding: 5px;
-  background: #19B3D3;
-  text-decoration: none;
+  padding: 7px;
+  background: #19B3D3 !important;
+  text-decoration: none !important;
   float: right;
   margin-top: -30px;
   margin-right: 40px;
-  border-radius: 2px;
+  border-radius: 12px;
   font-size: 15px;
   font-weight: 600;
-  color: #fff;
+  color: #fff !important;
   transition: 0.5s;
   transition-property: background;
 }
 
 .logout_btn:hover {
-  background: #0D9DBB;
+  background: #0D9DBB !important;
 }
 
 label #sidebar_btn {

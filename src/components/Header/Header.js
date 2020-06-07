@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './header.css';
+import './Header.css';
 import { FaBars } from 'react-icons/fa';
 
 function Header() {
