@@ -1,0 +1,71 @@
+.content {
+  margin-left: 250px;
+  position: relative;
+  top:100px;
+  padding-left: 0px;
+}
+
+.socialIcons .DeletePost {
+  background-color: red;
+  box-shadow: 0 0 16px #F8919A;
+}
+
+.profile {
+  margin: 0 1em;
+  cursor: pointer;
+}
+
+.post-content {
+  bottom: 75px;
+  padding: 20px;
+  min-width: 400px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transform: translateY(30px);
+  transition: 0.5s;
+}
+
+.post-content .header {
+  display: flex;
+  align-items: center;
+}
+.post-content .header img {
+  grid-column: 1/2;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post-content .header .infos {
+  margin-left: 1em;
+}
+.post-content .header .infos .name {
+  font-size: 1.25em;
+  color: #333;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.post-content .header .infos .title {
+  font-size: 0.9em;
+  color: #969696;
+  font-weight: 500;
+}
+
+.post-content .body {
+  padding: 1em;
+}
+
+.post-content .body p {
+  font-size: 0.95em;
+  color: #272727;
+}
+
+.post-content .header svg {
+  color: #1DC4E7;
+  font-size: 2em;
+  position: relative;
+  bottom: 10px;
+}
