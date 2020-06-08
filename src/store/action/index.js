@@ -5,5 +5,7 @@ export {
 
 export {
   blog,
-  createBlog
+  fetchPost,
+  createBlog,
+  deletePost
 } from './blogActions';

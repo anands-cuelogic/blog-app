@@ -29,6 +29,14 @@ class BlogContainer extends React.Component {
     }
   }
 
+  deletePostHandler = (id) => {
+    this.props.onDeletePost(id);
+  }
+
+  fetchPostHandler = (id) => {
+    this.props.history.push(`/blog/${id}`)
+  }
+
   createPostHandler = (title, content) => {
     const { userId } = this.props;
     const blogPostData = {
@@ -41,16 +49,14 @@ class BlogContainer extends React.Component {
   }
 
   render() {
-
-    //text-align: center;margin: 0 auto;position: relative;top: 15rem;
-    let blog = <div style={{textAlign: "center",margin: "0 auto",position: "relative",top: "15rem", zIndex: 1}}><Spinner /></div>;
+    let blog = <div className="content-spinner"><Spinner /></div>;
 
     if (!this.props.loading) {
       blog = (<>{this.props.posts.length ? <div className="col-md-12"><AddButton onShow={this.handleShow} /></div> : null}
         <CreateBlog show={this.state.show} onHide={this.handleClose} createpost={this.createPostHandler} />
         {!this.props.posts.length
-          ? <EmptyPost onShow={this.handleShow} />
-          : this.props.posts.map(post => <Blog key={post.id} author="Anand" title={post.title} content={post.content} createdAt={post.createdAt} />)}
+          ? <div className="col align-self-center"><EmptyPost onShow={this.handleShow} /></div>
+          : this.props.posts.map(post => <Blog key={post.id} post={post} onfetchPost={this.fetchPostHandler} onDeletePost={() => this.deletePostHandler(post.key)}/>)}
       </>)
     }
 
@@ -73,7 +79,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onFetchBlog: (token, userId) => dispatch(actions.blog(token, userId)),
-  onBlogCreate: (token, blogPostData) => dispatch(actions.createBlog(token, blogPostData))
+  onBlogCreate: (token, blogPostData) => dispatch(actions.createBlog(token, blogPostData)),
+  onDeletePost: (id) => dispatch(actions.deletePost(id))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(BlogContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(BlogContainer));

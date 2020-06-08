@@ -8,3 +8,10 @@
 #check:checked ~ .content {
   margin-left: 60px;
 }
+
+.content .content-spinner {
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  top: 15rem;
+}

@@ -2,6 +2,7 @@ import * as actionTypes from '../action/actionTypes';
 
 const initialState = {
   posts  : [],
+  post: null,
   loading: false,
   error  : null
 }
@@ -27,6 +28,21 @@ const blogReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.error
+      };
+
+    case actionTypes.POST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        post: action.payload
+      };
+
+    case actionTypes.POST_DELETE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null
       };
 
     default:

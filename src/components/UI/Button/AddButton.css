@@ -3,6 +3,7 @@ ul.socialIcons {
   position: relative;
   left: 23px;
   height: 20px;
+  display: flex;
 }
 
 .socialIcons li {
@@ -40,4 +41,9 @@ ul.socialIcons {
 .socialIcons .CreatePost {
   background-color: #1DC4E7;
   box-shadow: 0 0 16px #33BDFF;
+}
+
+.blog-container .blog-content .socialIcons .CreatePost {
+  position: relative;
+  left: 3em;
 }

@@ -2,13 +2,13 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import './App.css';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 import BlogContainer from './containers/BlogContainer/BlogContainer';
 import Login from './components/Auth/Login/Login';
 import Signup from './components/Auth/Signup/Signup';
 import Logout from './components/Auth/Logout/Logout';
+import Post from './components/Blog/Post/Post';
 
 class App extends React.Component {
   render() {
@@ -27,6 +27,7 @@ class App extends React.Component {
       <Switch>
         <Route path="/profile" render={() => <p>Profile</p>} />
         <Route path="/logout" component={Logout} />
+        <Route path="/blog/:id" component={Post} />
         <Route path="/" component={BlogContainer} />
       </Switch>
     </>)

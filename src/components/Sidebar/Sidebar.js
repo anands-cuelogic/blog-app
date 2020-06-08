@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
-import { FaDesktop, FaInfoCircle, FaSlidersH, FaBlog } from 'react-icons/fa';
+import { FaSlidersH, FaBlog } from 'react-icons/fa';
 
 import './Sidebar.css';
 import logo from '../../assets/avatar.png';
@@ -12,9 +11,7 @@ function Sidebar() {
       <center>
         <img src={logo} alt="..." className="profile_image" />
       </center>
-      <NavLink to="/" exact activeStyle={{background: "#19B3D3"}}><FaDesktop /><span>Dashboard</span></NavLink>
-      <NavLink to="/blog" activeStyle={{background: "#19B3D3"}}><FaBlog /><span>Blogs</span></NavLink>
-      <NavLink to="/about" activeStyle={{background: "#19B3D3"}}><FaInfoCircle /><span>About</span></NavLink>
+      <NavLink to="/" exact activeStyle={{background: "#19B3D3"}}><FaBlog /><span>Blogs</span></NavLink>
       <NavLink to="/profile" activeStyle={{background: "#19B3D3"}}><FaSlidersH /><span>Settings</span></NavLink>
     </div>
   )
