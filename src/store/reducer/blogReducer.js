@@ -2,9 +2,10 @@ import * as actionTypes from '../action/actionTypes';
 
 const initialState = {
   posts  : [],
-  post: null,
+  post   : null,
   loading: false,
-  error  : null
+  error  : null,
+  pending: false
 }
 
 const blogReducer = (state = initialState, action) => {
@@ -38,12 +39,28 @@ const blogReducer = (state = initialState, action) => {
         post: action.payload
       };
 
+    case actionTypes.POST_DELETE_START:
+      return {
+        ...state,
+        loading: true,
+        pending: true
+      };
+
     case actionTypes.POST_DELETE_SUCCESS:
       return {
         ...state,
         loading: false,
-        error: null
+        error: null,
+        pending: false
       };
+
+    case actionTypes.POST_DELETE_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+        pending: false
+      }
 
     default:
       return state;

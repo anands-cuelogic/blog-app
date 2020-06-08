@@ -7,8 +7,12 @@ import * as actions from '../../../store/action';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Spinner from '../../UI/Spinner/Spinner';
 import { FaEdit, FaTrash, FaBlog } from 'react-icons/fa';
+import { Redirect } from 'react-router-dom';
 
 class Post extends Component {
+  state = {
+    pending: true
+  }
 
   componentDidMount() {
     const { id } = this.props.match.params;
@@ -17,7 +21,7 @@ class Post extends Component {
 
   onDeleteHandler = (id) => {
     this.props.onDeletePost(id);
-    this.props.history.push("/");
+    this.setState({pending: false});
   }
 
   render() {
@@ -48,6 +52,10 @@ class Post extends Component {
           </div>
         </div>
       </>)
+    }
+
+    if(!this.props.loading && !this.state.pending && !this.props.error) {
+      post = <Redirect to="/" />;
     }
 
     return (

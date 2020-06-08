@@ -34,7 +34,7 @@ const Blog = props => {
         <div className="general">
           <h1>{props.post.title || ""}</h1>
           <p>{props.post.content.slice(0,100)}...</p>
-          <span className="more">Read more <b>&rarr;</b></span>
+          <span className="more">Click on title to read more <b>&rarr;</b></span>
         </div>
       </div>
     </div>

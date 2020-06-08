@@ -15,18 +15,23 @@ class BlogContainer extends React.Component {
     show: false
   };
 
+  componentDidMount() {
+    this.props.onFetchBlog(this.props.token, this.props.userId);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('Did update');
+    if(prevProps.pending !== this.props.pending) {
+      this.props.onFetchBlog(this.props.token, this.props.userId);
+    }
+  }
+
   handleClose = () => {
     this.setState({ show: false });
   }
 
   handleShow = () => {
     this.setState({ show: true });
-  }
-
-  componentDidMount() {
-    if (this.props.userId) {
-      this.props.onFetchBlog(this.props.token, this.props.userId);
-    }
   }
 
   deletePostHandler = (id) => {
@@ -74,7 +79,8 @@ const mapStateToProps = state => ({
   token: state.auth.token,
   userId: state.auth.userId,
   posts: state.blog.posts,
-  loading: state.blog.loading
+  loading: state.blog.loading,
+  pending: state.blog.pending
 });
 
 const mapDispatchToProps = dispatch => ({

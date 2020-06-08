@@ -72,8 +72,8 @@ const Signup = props => {
         </div>
         <div className="col-md-6">
           <div className="form-group">
-            <label>Password (Again)</label>
-            <Field type="password" name="passwordAgain" className="form-control" placeholder="Password Again" />
+            <label>Confirm Password</label>
+            <Field type="password" name="passwordAgain" className="form-control" placeholder="Confirm Password" />
             <ErrorMessage name="passwordAgain" component={FormError}/>
           </div>
         </div>

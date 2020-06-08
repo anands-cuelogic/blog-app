@@ -12,7 +12,6 @@ import Post from './components/Blog/Post/Post';
 
 class App extends React.Component {
   render() {
-
   let routes = (<>
     <Route path="/login" component={Login} />
     <Route path="/signup" component={Signup} />
@@ -29,6 +28,7 @@ class App extends React.Component {
         <Route path="/logout" component={Logout} />
         <Route path="/blog/:id" component={Post} />
         <Route path="/" component={BlogContainer} />
+        <Route path="/" />
       </Switch>
     </>)
   }

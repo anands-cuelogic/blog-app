@@ -3,13 +3,11 @@ import * as actionTypes from './actionTypes';
 import axios from '../../axios-blog';
 
 export const blogStart = () => {
-  console.log("BLOG ACTION BLOG_START");
   return {
   type: actionTypes.BLOG_START
 }};
 
 export const blogSuccess = (payload) => {
-  console.log("BLOG ACTION BLOG_SUCCESS ", payload);
   return {
   type: actionTypes.BLOG_SUCCESS,
   payload
@@ -26,9 +24,18 @@ export const postSuccess = (payload) => ({
   payload
 });
 
+export const postDeleteStart = () => ({
+  type: actionTypes.POST_DELETE_START
+});
+
 export const postDeleteSuccess = () => ({
   type: actionTypes.POST_DELETE_SUCCESS
 });
+
+export const postDeleteFail = (error) => ({
+  type: actionTypes.POST_DELETE_FAIL
+})
+
 
 export const fetchPost = (token, id) => {
   return async (dispatch) => {
@@ -48,21 +55,11 @@ export const fetchPost = (token, id) => {
   }
 }
 
-const delay = () => {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
-      resolve("anything");
-    }, 1000);
-  });
-}
-
 export const blog = (token, userId) => {
   return async (dispatch) => {
-    console.log("IN BLOG");
     dispatch(blogStart());
 
     try {
-      await delay();
       const response = await axios.get(`/post.json?auth=${token}&orderBy="userId"&equalTo="${userId}"`);
       let fetchedPost = [];
 
@@ -107,14 +104,18 @@ export const createBlog = (token, blogPostData) => {
 
 export const deletePost = (key) => {
   return async dispatch => {
-    dispatch(blogStart());
+    dispatch(postDeleteStart());
     try {
-      await axios.delete(`/post/${key}.json`);
+      console.log('Starting....');
+      const response = await axios.delete(`/post/${key}.json`);
+      console.log('Called response.... ', response);
+      console.log('Dispatching success');
       dispatch(postDeleteSuccess());
+      console.log('Dispatched success');
 
     } catch(error) {
       console.log(error);
-      dispatch(blogFail(error));
+      dispatch(postDeleteFail(error));
     }
   }
 }
