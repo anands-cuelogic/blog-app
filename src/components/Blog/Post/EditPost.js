@@ -7,8 +7,7 @@ import './EditPost.css';
 import Spinner from '../../UI/Spinner/Spinner';
 
 function EditPost(props) {
-  console.log(props);
-  
+
   const initialValues = {
     title  : props.post ? props.post.title  : '',
     content: props.post ? props.post.content: ''

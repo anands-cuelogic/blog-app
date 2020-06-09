@@ -114,12 +114,8 @@ export const deletePost = (key) => {
   return async dispatch => {
     dispatch(postDeleteStart());
     try {
-      console.log('Starting....');
-      const response = await axios.delete(`/post/${key}.json`);
-      console.log('Called response.... ', response);
-      console.log('Dispatching success');
+      await axios.delete(`/post/${key}.json`);
       dispatch(postDeleteSuccess());
-      console.log('Dispatched success');
 
     } catch(error) {
       console.log(error);

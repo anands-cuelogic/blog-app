@@ -21,6 +21,13 @@ class Post extends Component {
     this.props.onPost(this.props.token, id);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.showEdit !== this.state.showEdit) {
+      const { id } = this.props.match.params;
+      this.props.onPost(this.props.token, id);
+    }
+  }
+
   handleShowEdit = () => {
     this.setState({showEdit: true});
   }
@@ -43,7 +50,7 @@ class Post extends Component {
       id,
       key
     };
-    console.log('Edit pOst data ', blogPostData);
+
     this.props.onBlogCreate(this.props.token, blogPostData, method);
   }
 
@@ -103,7 +110,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onPost: (token, id) => dispatch(actions.fetchPost(token, id)),
+  onPost      : (token, id) => dispatch(actions.fetchPost(token, id)),
   onDeletePost: (id) => dispatch(actions.deletePost(id)),
   onBlogCreate: (token, blogPostData, method) => dispatch(actions.createBlog(token, blogPostData, method)),
 });
