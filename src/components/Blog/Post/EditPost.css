@@ -1,0 +1,13 @@
+.form-btn {
+  text-align: end;
+}
+
+.form-btn .create-blog-btn {
+  border-color: #1DC4E7 !important;
+  background-color: #1DC4E7 !important;
+  color: rgb(255, 255, 264);
+  padding: .375rem .75rem;
+  margin: 13px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+}

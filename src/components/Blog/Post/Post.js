@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { Redirect } from 'react-router-dom';
 
 import './Post.css';
 import * as actions from '../../../store/action';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Spinner from '../../UI/Spinner/Spinner';
 import { FaEdit, FaTrash, FaBlog } from 'react-icons/fa';
-import { Redirect } from 'react-router-dom';
+import EditPost from '../Post/EditPost';
 
 class Post extends Component {
   state = {
+    showEdit: false,
     pending: true
   }
 
@@ -19,9 +21,30 @@ class Post extends Component {
     this.props.onPost(this.props.token, id);
   }
 
+  handleShowEdit = () => {
+    this.setState({showEdit: true});
+  }
+
+  handleCloseEdit = () => {
+    this.setState({showEdit: false});
+  };
+
   onDeleteHandler = (id) => {
     this.props.onDeletePost(id);
     this.setState({pending: false});
+  }
+
+  editPostHandler = (title, content, id, key, method) => {
+    const { userId } = this.props;
+    const blogPostData = {
+      title,
+      content,
+      userId,
+      id,
+      key
+    };
+    console.log('Edit pOst data ', blogPostData);
+    this.props.onBlogCreate(this.props.token, blogPostData, method);
   }
 
   render() {
@@ -31,7 +54,7 @@ class Post extends Component {
       post = (<>
         <div className="col-md-4 offset-md-8">
           <ul className="socialIcons">
-            <li className="CreatePost"><FaEdit /> Edit</li>
+            <li className="CreatePost" onClick={this.handleShowEdit}><FaEdit /> Edit</li>
             <li className="DeletePost" onClick={() => this.onDeleteHandler(this.props.post.key)}><FaTrash /> Delete</li>
           </ul>
         </div>
@@ -39,6 +62,7 @@ class Post extends Component {
           <div className="profile">
             <div className="post-content">
               <div className="header">
+                <EditPost show={this.state.showEdit} onHide={this.handleCloseEdit} post={this.props.post} editpost={this.editPostHandler}/>
                 <FaBlog />
                 <div className="infos">
                   <h3 className="name">{this.props.post.title}</h3>
@@ -74,12 +98,14 @@ const mapStateToProps = state => ({
   loading: state.blog.loading,
   error  : state.blog.error,
   post   : state.blog.post,
-  token  : state.auth.token
+  token  : state.auth.token,
+  userId: state.auth.userId
 });
 
 const mapDispatchToProps = dispatch => ({
   onPost: (token, id) => dispatch(actions.fetchPost(token, id)),
-  onDeletePost: (id) => dispatch(actions.deletePost(id))
+  onDeletePost: (id) => dispatch(actions.deletePost(id)),
+  onBlogCreate: (token, blogPostData, method) => dispatch(actions.createBlog(token, blogPostData, method)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

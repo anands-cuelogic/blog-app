@@ -23,7 +23,7 @@ const Blog = props => {
             <h1 onClick={() => props.onfetchPost(props.post.id)}>{props.post.title || ""}</h1>
             <div className="stats">
               <div>
-                <button type="button" className="btn btn-info"><FaEdit /> Edit</button>
+                <button type="button" className="btn btn-info" onClick={props.onEditPost}><FaEdit /> Edit</button>
               </div>
               <div>
                 <button type="button" className="btn btn-danger" onClick={props.onDeletePost}><FaTrash /> Delete</button>

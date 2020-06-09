@@ -84,16 +84,24 @@ export const blog = (token, userId) => {
   }
 }
 
-export const createBlog = (token, blogPostData) => {
+export const createBlog = (token, blogPostData, method = 'GET') => {
   return async (dispatch) => {
     dispatch(blogStart());
     try {
       const data = {
         ...blogPostData,
         createdAt: new Date().toISOString(),
-        id: uuidv4()
+        id: method==="GET" ? uuidv4() : blogPostData.id
       }
-      await axios.post(`/post.json?auth=${token}`, data);
+      console.log('BLOG ACTION ', blogPostData, method);
+      if(method === 'GET') {
+        await axios.post(`/post.json?auth=${token}`, data);
+      } else if(method === 'PUT') {
+        const key = data.key;
+        delete(data.key);
+        await axios.put(`/post/${key}.json?auth=${token}`, data);
+      }
+
       dispatch(blog(token, blogPostData.userId));
 
     } catch (error) {
